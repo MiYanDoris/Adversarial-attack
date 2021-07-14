@@ -1,0 +1,47 @@
+{
+    "model_def": "model_defs_gowal.py",
+    "dataset": "fashion-mnist",
+    "path_prefix": "",
+    "models_path": "./fashion-mnist_dm_large_0.1/",
+    "training_params": {
+        "method": "robust",
+        "epochs": 500,
+        "lr": 5e-4,
+        "lr_decay_factor": 0.1,
+        "lr_decay_step": null,
+        "lr_decay_milestones": [300, 450],
+        "weight_decay": 0.0,
+        "optimizer": "adam",
+        "schedule_start": 50,
+        "starting_epsilon": 0.0,
+        "epsilon": 0.1,
+        "schedule_length":251,
+        "norm": "inf",
+        "verbose": false,
+        "multi_gpu": true,
+        "loader_params": {"batch_size": 128, "test_batch_size": 128, "shuffle_train": true},
+        "method_params": {"bounded_input": true, "bound_type": "crown-interval"}
+    },
+    "attack_params": {
+        "batch_size": 128,
+        "eps_start": 0.025,
+        "eps_end": 0.1,
+        "eps_step": 8
+    },
+    "eval_params": {
+        "method": "robust",
+        "epsilon": 0.1,
+        "norm": "inf",
+        "verbose": false,
+        "loader_params": {"batch_size": 128, "test_batch_size": 128, "shuffle_train": true},
+        "method_params": {"bounded_input": true, "bound_type": "interval"}
+    },
+    "models": [ 
+        {
+            "model_id": "IBP_large",
+            "model_class": "IBP_large",
+            "model_params": {"in_ch": 1, "in_dim": 28, "linear_size": 512, "negative_slope": 0.005}
+        }
+    ]
+}
+
